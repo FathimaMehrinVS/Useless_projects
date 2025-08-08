@@ -1,13 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comic Survey of Productivity</title>
+  <!-- Fun comic-style fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main id="app" class="container">
+    <!-- Landing Page -->
+    <section id="landing" class="card active" aria-labelledby="landing-title">
+      <h1 id="landing-title" class="title">Comic Productivity Survey</h1>
+      <p class="subtitle">Are you a productivity powerhouse or a certified couch potato? Let the stars decide.</p>
+      <button id="startBtn" class="btn primary">Start Survey ⭐</button>
+    </section>
+
+    <!-- Survey Page -->
+    <section id="survey" class="card hidden" aria-live="polite" aria-labelledby="survey-title">
+      <div class="survey-header">
+        <h2 id="survey-title" class="title">Question <span id="questionNumber">1</span>/15</h2>
+        <div class="progress"><div id="progressBar" class="progress-bar" style="width: 0%"></div></div>
+      </div>
+
+      <div id="questionText" class="question-text"></div>
+      <form id="optionsForm" class="options" role="radiogroup" aria-label="Star rating options">
+        <!-- Options rendered here by JS -->
+      </form>
+
+      <div class="actions">
+        <button id="nextBtn" class="btn primary" disabled>Next ▶</button>
+      </div>
+    </section>
+
+    <!-- Results Page -->
+    <section id="results" class="card hidden" aria-labelledby="results-title">
+      <h2 id="results-title" class="title">Your Results</h2>
+      <div class="score-wrap">
+        <div class="big-score" id="totalScore">0</div>
+        <div class="score-note">Total Stars</div>
+      </div>
+      <p id="resultBlurb" class="result-blurb"></p>
+
+      <div class="actions stack">
+        <button id="leaderboardBtn" class="btn secondary">See Leaderboard 🏆</button>
+        <button id="retakeBtn" class="btn">Retake Survey 🔁</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Made with ✨ giggles and ⭐ stars</span>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
 </html>
