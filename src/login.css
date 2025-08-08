@@ -1,0 +1,73 @@
+/* LoginPage.css */
+
+.login-container {
+  height: 100vh;
+  background-color: #0073b1; /* LinkedIn blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.login-title {
+  color: #0073b1;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  background-color: #0073b1;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #005983;
+}
+
+.signup-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.signup-text a {
+  color: #0073b1;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
