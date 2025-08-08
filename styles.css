@@ -1,0 +1,198 @@
+:root {
+  --bg: #0f1226;
+  --bg-accent: #171a36;
+  --card: #1b1f4b;
+  --text: #f7f8ff;
+  --muted: #b3b8ff;
+  --primary: #ff4ecd;
+  --primary-2: #6e5eff;
+  --accent: #11ffee;
+  --gold: #ffd166;
+  --danger: #ff6b6b;
+  --success: #2dd4bf;
+  --shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% 10%, #1a1d42, var(--bg)),
+              radial-gradient(1000px 600px at 90% 20%, #1a1d42, var(--bg));
+  font-family: 'Fredoka', 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.container {
+  max-width: 850px;
+  margin: 32px auto 120px auto;
+  padding: 0 16px;
+}
+
+.title {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+  font-size: 40px;
+  margin: 0 0 10px 0;
+  color: white;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.25);
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 24px 0;
+}
+
+.card {
+  background: linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.card.hidden { display: none; }
+.card.active { display: block; }
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: white;
+}
+
+.btn.secondary {
+  background: linear-gradient(135deg, #00f5d4, #00bbf9);
+  color: #0b0b14;
+}
+
+.btn:hover:not(:disabled) { transform: translateY(-1px) scale(1.01); }
+.btn:active:not(:disabled) { transform: translateY(0) scale(0.99); }
+
+.survey-header { display: flex; align-items: center; gap: 16px; }
+.progress {
+  flex: 1;
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), var(--gold));
+  width: 0%;
+}
+
+.question-text {
+  margin: 16px 0 12px 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px;
+  position: relative;
+}
+
+.option input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.stars {
+  min-width: 110px;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.option:hover { border-color: rgba(255,255,255,0.22); }
+
+.option input[type="radio"]:focus + .option-label {
+  outline: 2px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+.option input[type="radio"]:checked + .option-label {
+  background: linear-gradient(135deg, rgba(255, 110, 199, 0.25), rgba(110, 94, 255, 0.25));
+  border-radius: 10px;
+}
+
+.actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 16px; }
+.actions.stack { flex-direction: column; align-items: stretch; }
+
+.score-wrap { display: flex; align-items: baseline; gap: 12px; }
+.big-score { font-size: 56px; font-weight: 800; color: var(--gold); }
+.score-note { color: var(--muted); }
+
+.result-blurb { margin-top: 10px; font-size: 18px; line-height: 1.5; }
+
+.footer {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.25));
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Leaderboard styles */
+.leaderboard {
+  background: linear-gradient(165deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.table th { text-align: left; color: var(--muted); font-weight: 600; }
+.table tr.highlight td { background: rgba(255, 209, 102, 0.08); }
+.rank-badge { font-weight: 800; color: var(--gold); }
+
+/* Responsive */
+@media (min-width: 680px) {
+  .options { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 980px) {
+  .options { grid-template-columns: 1fr 1fr; }
+}

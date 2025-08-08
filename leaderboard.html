@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard • Comic Productivity Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card leaderboard" aria-labelledby="lb-title">
+      <h1 id="lb-title" class="title">Leaderboard 🏆</h1>
+      <p class="subtitle">Ranked from most useless (highest stars) to least useless (lowest stars). Ouch, but also lol.</p>
+
+      <div class="table-wrap">
+        <table class="table" id="leaderboardTable">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Stars</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="actions" style="justify-content: space-between; margin-top: 16px;">
+        <a href="/index.html" class="btn">← Back to Survey</a>
+        <a href="/index.html" class="btn secondary">Retake Survey 🔁</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Leaderboard generated with 100% certified giggles</span>
+  </footer>
+
+  <script>
+    // Mock data for demo
+    const mockPlayers = [
+      { username: 'LazyLad', score: 82 },
+      { username: 'ChillBill', score: 68 },
+      { username: 'WorkaholicWale', score: 24 },
+      { username: 'PowerNapPro', score: 58 },
+      { username: 'SnackGoblin', score: 46 },
+    ];
+
+    // Optionally include the user's last score if available
+    let lastScore = null;
+    try {
+      const fromStorage = localStorage.getItem('surveyLastScore');
+      if (fromStorage) lastScore = Number(fromStorage);
+    } catch (e) {}
+
+    const players = [...mockPlayers];
+    if (typeof lastScore === 'number' && !Number.isNaN(lastScore)) {
+      players.push({ username: 'You', score: lastScore, _highlight: true });
+    }
+
+    // Sort descending by score (most useless first)
+    players.sort((a, b) => b.score - a.score);
+
+    const tbody = document.querySelector('#leaderboardTable tbody');
+    tbody.innerHTML = '';
+
+    players.forEach((p, idx) => {
+      const tr = document.createElement('tr');
+      if (p._highlight) tr.classList.add('highlight');
+
+      const rank = document.createElement('td');
+      rank.innerHTML = `<span class="rank-badge">${idx + 1}</span>`;
+      const user = document.createElement('td');
+      user.textContent = p.username;
+      const score = document.createElement('td');
+      score.textContent = p.score;
+
+      tr.appendChild(rank);
+      tr.appendChild(user);
+      tr.appendChild(score);
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
